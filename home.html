@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Campus Communication Hub</title>
+    <link rel="stylesheet" href="styles.css">
+<style>
+    body {
+        background: #f0f0f0;
+        min-height: 100vh;
+        font-family: Helvetica, Arial, sans-serif;
+        padding-top: 60px;
+        margin: 0;
+    }
+    
+.main-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: transparent;
+    padding: 10px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    backdrop-filter: blur(10px);
+}
+
+.nav-links {
+    background: #590009;
+    border-radius: 25px;
+    padding: 5px 15px;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    padding: 8px 15px;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.nav-links a:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.nav-links a.active {
+    background: white;
+    color: #590009;
+}
+
+.profile-icon {
+    width: 40px;
+    height: 40px;
+    background: #590009;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+    box-shadow: 0 2px 8px rgba(89, 0, 9, 0.3);
+}
+
+.profile-icon:hover {
+    transform: scale(1.1);
+}
+    .dashboard-container {
+        display: grid;
+        grid-template-columns: 300px 1fr;
+        gap: 24px;
+        padding: 24px;
+        max-width: 1440px;
+        margin: 0 auto;
+    }
+
+    /* Left Sidebar Styles */
+    .sidebar {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .sidebar-block {
+        background: rgba(255, 255, 255, 0.9);
+        border: 1px solid #590009;
+        border-radius: 12px;
+        padding: 20px;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    }
+
+    .sidebar-block h3 {
+        color: #590009;
+        margin-bottom: 15px;
+        font-size: 1.1rem;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .subscription-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .subscription-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 0;
+        color: #000;
+        cursor: pointer;
+        transition: color 0.3s ease;
+    }
+
+    .subscription-item:hover {
+        color: #590009;
+    }
+
+    .filter-group {
+        margin-bottom: 15px;
+    }
+
+    .filter-group h4 {
+        color: #000;
+        margin-bottom: 8px;
+    }
+
+    .filter-group label {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 0;
+        color: #000;
+        cursor: pointer;
+    }
+
+    /* Main Content Styles */
+    .main-content {
+        display: grid;
+        gap: 24px;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .content-block {
+        background: rgba(255, 255, 255, 0.9);
+        border: 1px solid #590009;
+        border-radius: 12px;
+        padding: 20px;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    }
+
+    .content-block h3 {
+        color: #000;
+        margin-bottom: 15px;
+    }
+
+    .month-selector select {
+        padding: 8px 16px;
+        border: 1px solid #590009;
+        border-radius: 6px;
+        font-size: 1rem;
+        color: #590009;
+        background: rgba(255, 255, 255, 0.9);
+    }
+
+    .announcement-card {
+        background: rgba(255, 255, 255, 0.9);
+        border: 1px solid #590009;
+        border-radius: 12px;
+        padding: 18px;
+        margin-bottom: 15px;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        transition: transform 0.2s ease;
+    }
+    
+    .announcement-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+    }
+
+    .announcement-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    .category-tag {
+        background: #590009;
+        color: white;
+        padding: 6px 12px;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        font-weight: 500;
+        display: inline-block;
+    }
+
+    .announcement-title {
+        color: #000;
+        margin: 10px 0;
+    }
+
+    .date-tag {
+        color: #666;
+        font-size: 0.9rem;
+    }
+
+    .trending-section {
+        background: #590009;
+        color: white;
+    }
+    
+    .trending-item {
+        padding: 8px 0;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .quick-link {
+        background: rgba(255, 255, 255, 0.9);
+        border: 1px solid #590009;
+        padding: 15px;
+        border-radius: 12px;
+        color: #000;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        transition: all 0.3s ease;
+        margin-bottom: 10px;
+    }
+
+    .quick-link:hover {
+        transform: translateY(-3px);
+        color: #590009;
+        box-shadow: 0 4px 8px rgba(89, 0, 9, 0.15);
+    }
+
+    .timeline-event {
+        border-left: 2px solid #590009;
+        padding-left: 15px;
+        margin-bottom: 20px;
+        position: relative;
+    }
+    
+    .timeline-event:before {
+        content: '';
+        position: absolute;
+        left: -6px;
+        top: 0;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: #590009;
+    }
+
+    .event-date {
+        color: #590009;
+        font-weight: bold;
+    }
+
+    .event-details h4 {
+        color: #000;
+        margin: 5px 0;
+    }
+    
+    .event-details p {
+        margin: 0;
+        color: #555;
+    }
+
+    /* Button Styles - Enhanced */
+    .action-buttons {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-top: 15px;
+        flex-wrap: wrap;
+    }
+
+    .action-btn {
+        padding: 10px 18px;
+        border-radius: 25px;
+        border: none;
+        font-weight: 600;
+        font-size: 0.95rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+    }
+
+    .action-btn.primary {
+        background: #590009;
+        color: white;
+    }
+
+    .action-btn.primary:hover {
+        background: #7a000d;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 10px rgba(89, 0, 9, 0.3);
+    }
+
+    .action-btn.secondary {
+        background: rgba(255, 255, 255, 0.9);
+        border: 2px solid #590009;
+        color: #590009;
+    }
+
+    .action-btn.secondary:hover {
+        background: rgba(89, 0, 9, 0.1);
+        color: #590009;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 10px rgba(89, 0, 9, 0.1);
+    }
+    
+    .announcement-meta {
+        display: flex;
+        gap: 15px;
+        margin-top: 10px;
+        color: #555;
+        font-size: 0.9rem;
+    }
+    
+    .announcement-author {
+        color: #444;
+        font-style: italic;
+        margin: 8px 0;
+    }
+    
+    .links-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+    }
+    
+    /* Add this new button */
+    .add-subscription {
+        background: rgba(89, 0, 9, 0.1);
+        color: #590009;
+        border: 1px dashed #590009;
+        border-radius: 20px;
+        padding: 8px 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 10px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    
+    .add-subscription:hover {
+        background: rgba(89, 0, 9, 0.2);
+    }
+
+</style>
+</head>
+<body>
+    <nav class="main-nav">
+    <h1 class="logo" style="color: #590000;">
+        <a href="home.html" style="color: #590000; text-decoration: none;">
+            Campus Hub
+        </a>
+    </h1>
+        <div class="nav-links">
+            <a href="home.html" class="active">Home</a>
+            <a href="announcements.html">Announcements</a>
+            <a href="events.html">Events</a>
+            <a href="clubs.html">Clubs</a>
+        </div>
+        <a href="profile.html" class="profile-icon">👤</a>
+    </nav>
+
+    <div class="dashboard-container">
+        <!-- Left Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-block">
+                <h3>📌 My Subscriptions</h3>
+                <ul class="subscription-list">
+                    <li class="subscription-item">📚 Computer Science Dept</li>
+                    <li class="subscription-item">💻 Coding Club</li>
+                    <li class="subscription-item">⚽ Sports Committee</li>
+                    <li class="subscription-item">🎭 Cultural Club</li>
+                </ul>
+                <div class="add-subscription">
+                    <span>+</span> Add Subscription
+                </div>
+            </div>
+
+            <div class="sidebar-block">
+                <h3>🔍 Filters</h3>
+                <div class="filter-group">
+                    <h4>Categories</h4>
+                    <label><input type="checkbox" checked> Events</label>
+                    <label><input type="checkbox" checked> Academic</label>
+                    <label><input type="checkbox" checked> Deadlines</label>
+                    <label><input type="checkbox"> Faculty</label>
+                </div>
+                <div class="filter-group">
+                    <h4>Sort By</h4>
+                    <label><input type="radio" name="sort" checked> Latest</label>
+                    <label><input type="radio" name="sort"> Oldest</label>
+                </div>
+            </div>
+
+            <div class="sidebar-block trending-section">
+                <h3>🔥 Trending</h3>
+                <div class="trending-item">
+                    <span>📣</span>
+                    <p>Summer Internship Fair Registration Open</p>
+                </div>
+                <div class="trending-item">
+                    <span>🎓</span>
+                    <p>Graduation Ceremony Schedule Released</p>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="content-block full-width">
+                <div class="month-selector">
+                    <select>
+                        <option>March 2025</option>
+                        <option>April 2025</option>
+                        <option>May 2025</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="announcement-card">
+                <div class="announcement-header">
+                    <span class="date-tag">March 14, 2025</span>
+                    <span class="category-tag">⚡ Important</span>
+                </div>
+                <h3 class="announcement-title">Summer Internship Fair 2025</h3>
+                <p class="announcement-content">Leading tech companies including Google, Microsoft, and local startups will be participating. Prepare your resumes and portfolios. Mock interviews available on March 16.</p>
+                <p class="announcement-author">From: Career Development Center</p>
+                <div class="action-buttons">
+                    <button class="action-btn primary">Register Now</button>
+                    <button class="action-btn secondary">More Info</button>
+                    <span class="date-tag">Registration Deadline: March 20</span>
+                </div>
+            </div>
+
+            <div class="announcement-card">
+                <div class="announcement-header">
+                    <span class="date-tag">March 13, 2025</span>
+                    <span class="category-tag">🔬 Research</span>
+                </div>
+                <h3 class="announcement-title">AI Research Lab Launch</h3>
+                <p class="announcement-content">The new AI Research Laboratory opens next week. Join us for the inaugural lecture by Prof. Sarah Chen on "Future of AI in Education". Limited seats available.</p>
+                <p class="announcement-author">From: Department of Computer Science</p>
+                <div class="announcement-meta">
+                    <span>📍 Main Auditorium</span>
+                    <span>🕒 March 21, 2:00 PM</span>
+                </div>
+                <div class="action-buttons">
+                    <button class="action-btn primary">RSVP</button>
+                    <button class="action-btn secondary">Add to Calendar</button>
+                </div>
+            </div>
+
+            <div class="content-block">
+                <h3>Quick Access</h3>
+                <div class="links-grid">
+                    <a href="#" class="quick-link">
+                        <span>📚</span>
+                        <span>Library Portal</span>
+                    </a>
+                    <a href="#" class="quick-link">
+                        <span>📝</span>
+                        <span>Course Registration</span>
+                    </a>
+                    <a href="#" class="quick-link">
+                        <span>📅</span>
+                        <span>Academic Calendar</span>
+                    </a>
+                    <a href="#" class="quick-link">
+                        <span>💼</span>
+                        <span>Career Portal</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="content-block">
+                <h3>Upcoming Events</h3>
+                <div class="events-timeline">
+                    <div class="timeline-event">
+                        <div class="event-date">MAR 16</div>
+                        <div class="event-details">
+                            <h4>Mock Interview Sessions</h4>
+                            <p>Career Development Center</p>
+                        </div>
+                    </div>
+                    <div class="timeline-event">
+                        <div class="event-date">MAR 21</div>
+                        <div class="event-details">
+                            <h4>AI Lab Inauguration</h4>
+                            <p>Main Auditorium</p>
+                        </div>
+                    </div>
+                    <div class="timeline-event">
+                        <div class="event-date">MAR 25</div>
+                        <div class="event-details">
+                            <h4>Spring Cultural Fest</h4>
+                            <p>Campus Grounds</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="action-buttons">
+                    <button class="action-btn secondary">View All Events</button>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

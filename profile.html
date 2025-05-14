@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - Campus Communication Hub</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background: #f0f0f0;
+            min-height: 100vh;
+            padding-top: 60px;
+            font-family: Helvetica, Arial, sans-serif;
+        }
+
+.main-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: transparent;
+    padding: 10px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+}
+
+.nav-links {
+    background: #590009;
+    border-radius: 25px;
+    padding: 5px 15px;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    padding: 8px 15px;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+}
+
+.nav-links a:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.nav-links a.active {
+    background: white;
+    color: #590009;
+}
+.profile-icon {
+    width: 40px;
+    height: 40px;
+    background: #590009;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+}
+
+.profile-icon:hover {
+    transform: scale(1.1);
+}
+        .profile-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .profile-header {
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid #590009;
+            border-radius: 12px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 20px;
+        }
+
+        .profile-picture {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #ff6b6b, #590009);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+        }
+
+        .profile-info h1 {
+            color: #590009;
+            margin-bottom: 10px;
+        }
+
+        .profile-info p {
+            color: #000;
+            margin: 5px 0;
+        }
+
+        .profile-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+        }
+
+        .profile-section {
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid #590009;
+            border-radius: 12px;
+            padding: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .section-title {
+            color: #590009;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #590009;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            color: #590009;
+            margin-bottom: 8px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #590009;
+            border-radius: 6px;
+            font-size: 1rem;
+            background: rgba(255, 255, 255, 0.9);
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #590009;
+            box-shadow: 0 0 0 2px rgba(89, 0, 9, 0.1);
+        }
+
+        .subscription-list {
+            list-style: none;
+        }
+
+        .subscription-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(89, 0, 9, 0.1);
+        }
+
+        .subscription-item:last-child {
+            border-bottom: none;
+        }
+
+        .unsubscribe-btn {
+            background: none;
+            border: 1px solid #590009;
+            color: #590009;
+            padding: 5px 10px;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .unsubscribe-btn:hover {
+            background: #590009;
+            color: white;
+        }
+
+        .save-btn {
+            background: #590009;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .save-btn:hover {
+            background: #7a000d;
+            transform: translateY(-2px);
+        }
+
+        .notification-toggle {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(89, 0, 9, 0.1);
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 24px;
+            border: 1px solid #590009;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 4px;
+            bottom: 3px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: #590009;
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+
+.logout-btn {
+    background: transparent;
+    color: #590009;
+    border: 1px solid #590009;
+    padding: 12px 30px;
+    border-radius: 25px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-left: 10px;
+}
+
+.logout-btn:hover {
+    background: #590009;
+    color: white;
+    transform: translateY(-2px);
+}
+
+.profile-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.toast {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(89, 0, 9, 0.9);
+    color: white;
+    padding: 15px 25px;
+    border-radius: 25px;
+    backdrop-filter: blur(10px);
+    transform: translateY(100px);
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.toast.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+    </style>
+</head>
+<body>
+    <nav class="main-nav">
+    <h1 class="logo" style="color: #590000;">
+        <a href="home.html" style="color: #590000; text-decoration: none;">
+            Campus Hub
+        </a>
+    </h1>
+        <div class="nav-links">
+            <a href="home.html" class="active">Home</a>
+            <a href="announcements.html">Announcements</a>
+            <a href="events.html">Events</a>
+            <a href="clubs.html">Clubs</a>
+        </div>
+        <a href="profile.html" class="profile-icon">👤</a>
+    </nav>
+    <div class="profile-container">
+        <div class="profile-header">
+            <div class="profile-picture-container">
+                <div class="profile-picture" id="profilePic" onclick="document.getElementById('imageUpload').click()">
+                    👤
+                </div>
+                <input type="file" id="imageUpload" accept="image/*" onchange="updateProfilePicture(this)" style="display: none;">
+            </div>
+            <div class="profile-info">
+                <h1 id="userName" contenteditable="true">John Doe</h1>
+                <p>📧 john.doe@example.com</p>
+                <p>🎓 Computer Science</p>
+                <p>📱 +1 234-567-8900</p>
+            </div>
+            <div class="profile-actions">
+                <button class="save-btn" onclick="saveChanges()">Save Changes</button>
+                <button class="logout-btn" onclick="handleLogout()">Logout</button>
+            </div>
+        </div>
+
+        <div class="profile-grid">
+            <div class="profile-section">
+                <h2 class="section-title">Profile Settings</h2>
+                <form>
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" value="John Doe">
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" value="john.doe@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Phone</label>
+                        <input type="tel" value="+1 234-567-8900">
+                    </div>
+                    <div class="form-group">
+                        <label>Course</label>
+                        <input type="text" value="Computer Science" readonly>
+                    </div>
+                    <button type="submit" class="save-btn">Save Changes</button>
+                </form>
+            </div>
+
+            <div class="profile-section">
+                <h2 class="section-title">My Subscriptions</h2>
+                <ul class="subscription-list">
+                    <li class="subscription-item">
+                        <span>Coding Club</span>
+                        <button class="unsubscribe-btn">Unsubscribe</button>
+                    </li>
+                    <li class="subscription-item">
+                        <span>Sports Club</span>
+                        <button class="unsubscribe-btn">Unsubscribe</button>
+                    </li>
+                    <li class="subscription-item">
+                        <span>Computer Science Dept</span>
+                        <button class="unsubscribe-btn">Unsubscribe</button>
+                    </li>
+                </ul>
+
+                <h2 class="section-title">Notification Settings</h2>
+                <div class="notification-toggle">
+                    <span>Email Notifications</span>
+                    <label class="switch">
+                        <input type="checkbox" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="notification-toggle">
+                    <span>Push Notifications</span>
+                    <label class="switch">
+                        <input type="checkbox" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+// Check if user is logged in
+window.addEventListener('load', () => {
+    const userData = JSON.parse(localStorage.getItem('userData'));
+    if (!userData) {
+        window.location.href = 'login.html';
+        return;
+    }
+
+    // Populate user data
+    document.getElementById('userName').textContent = userData.name;
+    document.querySelector('.profile-info p:nth-child(2)').textContent = `📧 ${userData.email}`;
+    document.querySelector('.profile-info p:nth-child(3)').textContent = `🎓 ${userData.course}`;
+    document.querySelector('.profile-info p:nth-child(4)').textContent = `📱 ${userData.phone}`;
+
+    if (userData.profilePic) {
+        const profilePic = document.getElementById('profilePic');
+        profilePic.innerHTML = '';
+        profilePic.style.backgroundImage = `url(${userData.profilePic})`;
+        profilePic.style.backgroundSize = 'cover';
+        profilePic.style.backgroundPosition = 'center';
+    }
+});
+
+function updateProfilePicture(input) {
+    if (input.files && input.files[0]) {
+        const reader = new FileReader();
+        
+        reader.onload = function(e) {
+            const profilePic = document.getElementById('profilePic');
+            profilePic.innerHTML = '';
+            profilePic.style.backgroundImage = `url(${e.target.result})`;
+            profilePic.style.backgroundSize = 'cover';
+            profilePic.style.backgroundPosition = 'center';
+            
+            // Save to localStorage
+            const userData = JSON.parse(localStorage.getItem('userData'));
+            userData.profilePic = e.target.result;
+            localStorage.setItem('userData', JSON.stringify(userData));
+            showToast('Profile picture updated!');
+        }
+        
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+function saveChanges() {
+    const userData = JSON.parse(localStorage.getItem('userData'));
+    userData.name = document.getElementById('userName').textContent;
+    localStorage.setItem('userData', JSON.stringify(userData));
+    showToast('Changes saved successfully!');
+}
+
+function handleLogout() {
+    localStorage.removeItem('userData');
+    window.location.href = 'index.html';
+}
+
+function showToast(message) {
+    const toast = document.createElement('div');
+    toast.className = 'toast';
+    toast.textContent = message;
+    document.body.appendChild(toast);
+    
+    setTimeout(() => {
+        toast.classList.add('show');
+    }, 100);
+
+    setTimeout(() => {
+        toast.classList.remove('show');
+        setTimeout(() => toast.remove(), 300);
+    }, 3000);
+}
+    </script>
+</body>
+</html>

@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events - Campus Communication Hub</title>
+    <link rel="stylesheet" href="styles.css">
+<style>
+    body {
+        background: #f0f0f0;
+        min-height: 100vh;
+        padding-top: 60px;
+        font-family: Helvetica, Arial, sans-serif;
+    }
+.main-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: transparent;
+    padding: 10px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+}
+
+.nav-links {
+    background: #590009;
+    border-radius: 25px;
+    padding: 5px 15px;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    padding: 8px 15px;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+}
+
+.nav-links a:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.nav-links a.active {
+    background: white;
+    color: #590009;
+}
+
+.profile-icon {
+    width: 40px;
+    height: 40px;
+    background: #590009;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+}
+
+.profile-icon:hover {
+    transform: scale(1.1);
+}
+
+    .events-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    .filter-bar {
+        background: rgba(255, 255, 255, 0.9);
+        border: 1px solid #590009;
+        padding: 20px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        display: flex;
+        gap: 15px;
+        flex-wrap: wrap;
+        backdrop-filter: blur(10px);
+    }
+
+    .filter-bar select, .filter-bar input {
+        padding: 12px;
+        background: rgba(255, 255, 255, 0.9);
+        border: 1px solid #590009;
+        border-radius: 5px;
+        min-width: 200px;
+        color: #590009;
+    }
+
+    .events-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        gap: 20px;
+    }
+
+    .event-card {
+        background: rgba(255, 255, 255, 0.9);
+        border: 1px solid #590009;
+        border-radius: 10px;
+        overflow: hidden;
+        backdrop-filter: blur(10px);
+        transition: transform 0.3s ease;
+    }
+
+    .event-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .event-image {
+        width: 100%;
+        height: 200px;
+        background: linear-gradient(135deg, #ff6b6b, #590009);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 2rem;
+    }
+
+    .event-content {
+        padding: 20px;
+    }
+
+    .event-date {
+        color: #590009;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .event-title {
+        color: #000;
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+    }
+
+    .event-description {
+        color: #666;
+        margin-bottom: 15px;
+        line-height: 1.5;
+    }
+
+    .event-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 15px;
+        border-top: 1px solid #590009;
+    }
+
+    .attend-btn {
+        background: #590009;
+        color: white;
+        border: none;
+        padding: 8px 15px;
+        border-radius: 20px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .attend-btn:hover {
+        background: #7a000d;
+        transform: translateY(-2px);
+    }
+
+    .calendar-btn {
+        color: #590009;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .calendar-btn:hover {
+        text-decoration: underline;
+    }
+</style>
+</head>
+<body>
+<nav class="main-nav">
+    <h1 class="logo" style="color: #590000;">
+        <a href="home.html" style="color: #590000; text-decoration: none;">
+            Campus Hub
+        </a>
+    </h1>
+        <div class="nav-links">
+<a href="home.html">Home</a>
+    <a href="announcements.html">Announcements</a>
+    <a href="events.html" class="active">Events</a>
+    <a href="clubs.html">Clubs</a>
+        </div>
+        <a href="profile.html" class="profile-icon">👤</a>
+    </nav>
+    <div class="events-container">
+        <div class="filter-bar">
+            <select>
+                <option value="">All Categories</option>
+                <option value="academic">Academic</option>
+                <option value="cultural">Cultural</option>
+                <option value="sports">Sports</option>
+            </select>
+            <input type="date" placeholder="Filter by date">
+            <select>
+                <option value="">All Clubs</option>
+                <option value="coding">Coding Club</option>
+                <option value="sports">Sports Club</option>
+            </select>
+        </div><!-- Inside the <div class="events-grid"> -->
+<!-- Inside the <div class="events-grid"> -->
+<div class="events-grid">
+
+    <!-- JANUARY -->
+    <div class="event-card">
+        <div class="event-image">📚</div>
+        <div class="event-content">
+            <div class="event-date">January 10–11, 2025</div>
+            <h3 class="event-title">Enrollment for Fourth-Year Students</h3>
+            <p class="event-description">Enrollment for all fourth-year students will be open. Ensure you have your requirements ready.</p>
+            <div class="event-footer">
+                <button class="attend-btn" onclick="showToast('Enrollment for Fourth-Year Students')">Attend Event</button>
+                <button class="calendar-btn" onclick="showToast('Enrollment for Fourth-Year Students')">📅 Add to Calendar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- FEBRUARY -->
+    <div class="event-card">
+        <div class="event-image">✝️</div>
+        <div class="event-content">
+            <div class="event-date">February 6, 2025</div>
+            <h3 class="event-title">Monthly Eucharistic Celebration (Evening)</h3>
+            <p class="event-description">An evening Eucharistic celebration for all students and staff. Held at 6:00 PM in the school chapel.</p>
+            <div class="event-footer">
+                <button class="attend-btn" onclick="showToast('Monthly Eucharistic Celebration (Evening)')">Attend Event</button>
+                <button class="calendar-btn" onclick="showToast('Monthly Eucharistic Celebration (Evening)')">📅 Add to Calendar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MARCH -->
+    <div class="event-card">
+        <div class="event-image">🏀</div>
+        <div class="event-content">
+            <div class="event-date">March 1–5, 2025</div>
+            <h3 class="event-title">Cross Blazers Cup</h3>
+            <p class="event-description">Join the annual basketball tournament showcasing the talents of the school's finest athletes.</p>
+            <div class="event-footer">
+                <button class="attend-btn" onclick="showToast('Cross Blazers Cup')">Attend Event</button>
+                <button class="calendar-btn" onclick="showToast('Cross Blazers Cup')">📅 Add to Calendar</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="event-card">
+        <div class="event-image">🚀</div>
+        <div class="event-content">
+            <div class="event-date">March 7, 2025</div>
+            <h3 class="event-title">Cross Jumpstart</h3>
+            <p class="event-description">A motivational event to inspire students for the upcoming semester with speeches and activities.</p>
+            <div class="event-footer">
+                <button class="attend-btn" onclick="showToast('Cross Jumpstart')">Attend Event</button>
+                <button class="calendar-btn" onclick="showToast('Cross Jumpstart')">📅 Add to Calendar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- APRIL -->
+    <div class="event-card">
+        <div class="event-image">🏃‍♂️</div>
+        <div class="event-content">
+            <div class="event-date">April 9, 2025</div>
+            <h3 class="event-title">PE Day</h3>
+            <p class="event-description">Physical Education Day with various athletic competitions. Cheer for your friends and enjoy the day!</p>
+            <div class="event-footer">
+                <button class="attend-btn" onclick="showToast('PE Day')">Attend Event</button>
+                <button class="calendar-btn" onclick="showToast('PE Day')">📅 Add to Calendar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAY -->
+    <div class="event-card">
+        <div class="event-image">📢</div>
+        <div class="event-content">
+            <div class="event-date">May 6, 2025</div>
+            <h3 class="event-title">Compressed Work Week Resumes</h3>
+            <p class="event-description">Starting May 6, the compressed work week arrangement will resume for faculty and staff.</p>
+            <div class="event-footer">
+                <button class="attend-btn" onclick="showToast('Compressed Work Week Resumes')">Attend Event</button>
+                <button class="calendar-btn" onclick="showToast('Compressed Work Week Resumes')">📅 Add to Calendar</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="event-card">
+        <div class="event-image">📑</div>
+        <div class="event-content">
+            <div class="event-date">May 17, 19–21, 2025</div>
+            <h3 class="event-title">Final Examinations</h3>
+            <p class="event-description">Final examinations for the semester will be held across these dates. Check your exam schedules and rooms early.</p>
+            <div class="event-footer">
+                <button class="attend-btn" onclick="showToast('Final Examinations')">Attend Event</button>
+                <button class="calendar-btn" onclick="showToast('Final Examinations')">📅 Add to Calendar</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Toast notification container -->
+<div id="toast" class="toast">
+    See you there! 🎉
+</div>
+
+<script>
+    function showToast(eventTitle) {
+        var toast = document.getElementById("toast");
+        toast.innerText = `See you there! 🎉 You added "${eventTitle}" to your calendar.`;
+        toast.className = "toast show"; // Show the toast notification
+        
+        // Hide the toast after 3 seconds
+        setTimeout(function() {
+            toast.className = "toast"; // Hide the toast
+        }, 3000);
+    }
+</script>
+
+<!-- CSS for Toast Notification -->
+<style>
+    /* Toast notification styling */
+    .toast {
+        visibility: hidden;
+        min-width: 250px;
+        margin-left: -125px;
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        border-radius: 2px;
+        padding: 16px;
+        position: fixed;
+        z-index: 1;
+        left: 50%;
+        bottom: 30px;
+        font-size: 17px;
+    }
+
+    .toast.show {
+        visibility: visible;
+        animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    }
+
+    /* Fade in and out animation */
+    @keyframes fadein {
+        from {
+            bottom: 0;
+            opacity: 0;
+        }
+        to {
+            bottom: 30px;
+            opacity: 1;
+        }
+    }
+
+    @keyframes fadeout {
+        from {
+            opacity: 1;
+        }
+        to {
+            opacity: 0;
+        }
+    }
+</style>
+
+
+
+    </div>
+</body>
+</html>
