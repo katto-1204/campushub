@@ -1,278 +1,338 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Announcements - Campus Communication Hub</title>
-    <link rel="stylesheet" href="styles.css">
-<style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Announcements - Campus Communication Hub</title>
+  <link rel="stylesheet" href="styles.css"/>
+  <style>
     body {
-        background: #f0f0f0;
-        min-height: 100vh;
-        padding-top: 60px;
-        font-family: Helvetica, Arial, sans-serif;
+      background: #f0f0f0;
+      min-height: 100vh;
+      padding-top: 60px;
+      font-family: Helvetica, Arial, sans-serif;
     }
-.main-nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    background: transparent;
-    padding: 10px 30px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 1000;
-}
 
-.nav-links {
-    background: #590009;
-    border-radius: 25px;
-    padding: 5px 15px;
-    display: flex;
-    gap: 20px;
-}
+    .main-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: transparent;
+      padding: 10px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+    }
 
-.nav-links a {
-    color: white;
-    text-decoration: none;
-    padding: 8px 15px;
-    border-radius: 20px;
-    transition: all 0.3s ease;
-}
+    .nav-links {
+      background: #590009;
+      border-radius: 25px;
+      padding: 5px 15px;
+      display: flex;
+      gap: 20px;
+    }
 
-.nav-links a:hover {
-    background: rgba(255, 255, 255, 0.1);
-}
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      padding: 8px 15px;
+      border-radius: 20px;
+      transition: all 0.3s ease;
+    }
 
-.nav-links a.active {
-    background: white;
-    color: #590009;
-}
+    .nav-links a:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
 
-.profile-icon {
-    width: 40px;
-    height: 40px;
-    background: #590009;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    text-decoration: none;
-    font-size: 1.2rem;
-    transition: transform 0.3s ease;
-}
+    .nav-links a.active {
+      background: white;
+      color: #590009;
+    }
 
-.profile-icon:hover {
-    transform: scale(1.1);
-}
+    .profile-icon {
+      width: 40px;
+      height: 40px;
+      background: #590009;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-decoration: none;
+      font-size: 1.2rem;
+      transition: transform 0.3s ease;
+    }
+
+    .profile-icon:hover {
+      transform: scale(1.1);
+    }
+
     .announcements-container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
     }
 
     .search-bar {
-        background: rgba(255, 255, 255, 0.9);
-        padding: 20px;
-        border-radius: 10px;
-        border: 1px solid #590009;
-        backdrop-filter: blur(10px);
-        margin-bottom: 20px;
-        display: flex;
-        gap: 15px;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 20px;
+      border-radius: 10px;
+      border: 1px solid #590009;
+      backdrop-filter: blur(10px);
+      margin-bottom: 20px;
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .search-bar input,
+    .search-bar select {
+      padding: 12px;
+      border: 1px solid #590009;
+      border-radius: 5px;
+      font-size: 1rem;
+      background: rgba(255, 255, 255, 0.9);
+      color: #000;
     }
 
     .search-bar input {
-        flex: 1;
-        padding: 12px;
-        border: 1px solid #590009;
-        border-radius: 5px;
-        font-size: 1rem;
-        background: rgba(255, 255, 255, 0.9);
-        color: #000;
+      flex: 2;
+      min-width: 200px;
     }
 
     .search-bar select {
-        padding: 12px;
-        border: 1px solid #590009;
-        border-radius: 5px;
-        color: #590009;
-        background: rgba(255, 255, 255, 0.9);
+      flex: 1;
+      min-width: 150px;
+      color: #590009;
     }
 
     .announcements-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        gap: 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
     }
 
     .announcement-card {
-        background: rgba(255, 255, 255, 0.9);
-        border: 1px solid #590009;
-        border-radius: 10px;
-        padding: 20px;
-        backdrop-filter: blur(10px);
-        transition: transform 0.3s ease;
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid #590009;
+      border-radius: 10px;
+      padding: 20px;
+      backdrop-filter: blur(10px);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      animation: fadeIn 0.4s ease-in;
     }
 
     .announcement-card:hover {
-        transform: translateY(-5px);
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(89, 0, 9, 0.2);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .card-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
     }
 
     .card-tag {
-        background: rgba(89, 0, 9, 0.1);
-        color: #590009;
-        padding: 5px 10px;
-        border-radius: 15px;
-        font-size: 0.9rem;
+      background: rgba(89, 0, 9, 0.1);
+      color: #590009;
+      padding: 5px 10px;
+      border-radius: 15px;
+      font-size: 0.9rem;
     }
 
     .card-date {
-        color: #666;
-        font-size: 0.9rem;
+      color: #666;
+      font-size: 0.9rem;
     }
 
     .card-title {
-        color: #590009;
-        margin-bottom: 10px;
-        font-size: 1.2rem;
+      color: #590009;
+      margin-bottom: 10px;
+      font-size: 1.2rem;
     }
 
     .card-content {
-        color: #666;
-        margin-bottom: 15px;
-        line-height: 1.5;
+      color: #666;
+      margin-bottom: 15px;
+      line-height: 1.5;
     }
 
     .card-footer {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding-top: 15px;
-        border-top: 1px solid #590009;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 15px;
+      border-top: 1px solid #590009;
     }
 
     .bookmark-btn {
-        background: none;
-        border: none;
-        color: #590009;
-        cursor: pointer;
-        font-size: 1.2rem;
+      background: none;
+      border: none;
+      color: #590009;
+      cursor: pointer;
+      font-size: 1.2rem;
+    }
+
+    .bookmark-btn.active {
+      color: gold;
     }
 
     .author {
-        color: #666;
-        font-size: 0.9rem;
+      color: #666;
+      font-size: 0.9rem;
     }
-</style>
+
+    @media (max-width: 600px) {
+      .nav-links {
+        gap: 10px;
+        padding: 5px 10px;
+      }
+
+      .search-bar {
+        flex-direction: column;
+      }
+
+      .search-bar input,
+      .search-bar select {
+        width: 100%;
+      }
+    }
+  </style>
 </head>
 <body>
-<nav class="main-nav">
+  <nav class="main-nav">
     <h1 class="logo" style="color: #590000;">
-        <a href="home.html" style="color: #590000; text-decoration: none;">
-            Campus Hub
-        </a>
+      <a href="home.html" style="color: #590000; text-decoration: none;">Campus Hub</a>
     </h1>
-        <div class="nav-links">
-            <a href="home.html">Home</a>
-            <a href="announcements.html" class="active">Announcements</a>
-            <a href="events.html">Events</a>
-            <a href="clubs.html">Clubs</a>
-        </div>
-        <a href="profile.html" class="profile-icon">👤</a>
-    </nav>
-
-    <div class="announcements-container">
-        <div class="search-bar">
-            <input type="text" placeholder="Search announcements...">
-            <select>
-                <option value="">All Categories</option>
-                <option value="academic">Academic</option>
-                <option value="event">Event</option>
-                <option value="faculty">Faculty</option>
-            </select>
-        </div>
-
-        <div class="announcements-grid">
-            <!-- Pinned Announcement -->
-            <div class="announcement-card">
-                <div class="card-header">
-                    <span class="card-tag">📌 Pinned</span>
-                    <span class="card-date">March 15, 2024</span>
-                </div>
-                <h3 class="card-title">Important: Semester Registration</h3>
-                <p class="card-content">Registration for the upcoming semester starts next week. Please ensure all dues are cleared.</p>
-                <div class="card-footer">
-                    <span class="author">Academic Office</span>
-                    <button class="bookmark-btn">🔖</button>
-                </div>
-            </div>
-
-            <!-- Regular Announcements -->
-            <div class="announcement-card">
-                <div class="card-header">
-                    <span class="card-tag">🔔 New</span>
-                    <span class="card-date">March 14, 2024</span>
-                </div>
-                <h3 class="card-title">Campus Hackathon 2024</h3>
-                <p class="card-content">Join us for the biggest coding event of the year. Amazing prizes to be won!</p>
-                <div class="card-footer">
-                    <span class="author">Coding Club</span>
-                    <button class="bookmark-btn">🔖</button>
-                </div>
-            </div>
-
-            <!-- Academic Announcement -->
-            <div class="announcement-card">
-                <div class="card-header">
-                    <span class="card-tag">📚 Academic</span>
-                    <span class="card-date">March 13, 2025</span>
-                </div>
-                <h3 class="card-title">New Elective Courses Added</h3>
-                <p class="card-content">Three new electives added for next semester: AI Ethics, Blockchain Development, and Digital Marketing. Prerequisites and syllabus available online.</p>
-                <div class="card-footer">
-                    <span class="author">Academic Council</span>
-                    <button class="bookmark-btn">🔖</button>
-                </div>
-            </div>
-
-            <!-- Research Announcement -->
-            <div class="announcement-card">
-                <div class="card-header">
-                    <span class="card-tag">🔬 Research</span>
-                    <span class="card-date">March 12, 2025</span>
-                </div>
-                <h3 class="card-title">Research Grant Applications Open</h3>
-                <p class="card-content">Applications now open for summer research grants. Priority areas: AI, Climate Change, and Renewable Energy.</p>
-                <div class="card-footer">
-                    <span class="author">Research Department</span>
-                    <button class="bookmark-btn">🔖</button>
-                </div>
-            </div>
-
-            <!-- Career Announcement -->
-            <div class="announcement-card">
-                <div class="card-header">
-                    <span class="card-tag">💼 Career</span>
-                    <span class="card-date">March 11, 2025</span>
-                </div>
-                <h3 class="card-title">Google Technical Interview Workshop</h3>
-                <p class="card-content">Join Google engineers for a technical interview preparation workshop. Topics: Data Structures, Algorithms, and System Design.</p>
-                <div class="card-footer">
-                    <span class="author">Career Development Center</span>
-                    <button class="bookmark-btn">🔖</button>
-                </div>
-            </div>
-        </div>
+    <div class="nav-links">
+      <a href="home.html">Home</a>
+      <a href="announcements.html" class="active">Announcements</a>
+      <a href="events.html">Events</a>
+      <a href="clubs.html">Clubs</a>
     </div>
+    <a href="profile.html" class="profile-icon">👤</a>
+  </nav>
+
+  <div class="announcements-container">
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="Search announcements...">
+      <select id="categoryFilter">
+        <option value="">All Categories</option>
+        <option value="Pinned">Pinned</option>
+        <option value="New">New</option>
+        <option value="Academic">Academic</option>
+        <option value="Research">Research</option>
+        <option value="Career">Career</option>
+      </select>
+    </div>
+
+    <div class="announcements-grid" id="announcementsGrid">
+      <div class="announcement-card" data-title="Semester Registration" data-content="Registration for the upcoming semester starts next week." data-category="Pinned">
+        <div class="card-header">
+          <span class="card-tag">📌 Pinned</span>
+          <span class="card-date">March 15, 2024</span>
+        </div>
+        <h3 class="card-title">Important: Semester Registration</h3>
+        <p class="card-content">Registration for the upcoming semester starts next week. Please ensure all dues are cleared.</p>
+        <div class="card-footer">
+          <span class="author">Academic Office</span>
+          <button class="bookmark-btn">🔖</button>
+        </div>
+      </div>
+
+      <div class="announcement-card" data-title="Hackathon 2024" data-content="Join us for the biggest coding event." data-category="New">
+        <div class="card-header">
+          <span class="card-tag">🔔 New</span>
+          <span class="card-date">March 14, 2024</span>
+        </div>
+        <h3 class="card-title">Campus Hackathon 2024</h3>
+        <p class="card-content">Join us for the biggest coding event of the year. Amazing prizes to be won!</p>
+        <div class="card-footer">
+          <span class="author">Coding Club</span>
+          <button class="bookmark-btn">🔖</button>
+        </div>
+      </div>
+
+      <div class="announcement-card" data-title="Elective Courses" data-content="New electives added." data-category="Academic">
+        <div class="card-header">
+          <span class="card-tag">📚 Academic</span>
+          <span class="card-date">March 13, 2025</span>
+        </div>
+        <h3 class="card-title">New Elective Courses Added</h3>
+        <p class="card-content">Three new electives added for next semester: AI Ethics, Blockchain Development, and Digital Marketing.</p>
+        <div class="card-footer">
+          <span class="author">Academic Council</span>
+          <button class="bookmark-btn">🔖</button>
+        </div>
+      </div>
+
+      <div class="announcement-card" data-title="Research Grants" data-content="Applications open for summer research grants." data-category="Research">
+        <div class="card-header">
+          <span class="card-tag">🔬 Research</span>
+          <span class="card-date">March 12, 2025</span>
+        </div>
+        <h3 class="card-title">Research Grant Applications Open</h3>
+        <p class="card-content">Applications now open for summer research grants. Priority areas: AI, Climate Change, and Renewable Energy.</p>
+        <div class="card-footer">
+          <span class="author">Research Department</span>
+          <button class="bookmark-btn">🔖</button>
+        </div>
+      </div>
+
+      <div class="announcement-card" data-title="Google Workshop" data-content="Interview prep with Google engineers." data-category="Career">
+        <div class="card-header">
+          <span class="card-tag">💼 Career</span>
+          <span class="card-date">March 11, 2025</span>
+        </div>
+        <h3 class="card-title">Google Technical Interview Workshop</h3>
+        <p class="card-content">Join Google engineers for a technical interview preparation workshop. Topics: Data Structures, Algorithms, and System Design.</p>
+        <div class="card-footer">
+          <span class="author">Career Development Center</span>
+          <button class="bookmark-btn">🔖</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const searchInput = document.getElementById('searchInput');
+    const categoryFilter = document.getElementById('categoryFilter');
+    const cards = document.querySelectorAll('.announcement-card');
+
+    function filterCards() {
+      const query = searchInput.value.toLowerCase();
+      const category = categoryFilter.value;
+
+      cards.forEach(card => {
+        const title = card.dataset.title.toLowerCase();
+        const content = card.dataset.content.toLowerCase();
+        const cat = card.dataset.category;
+
+        const matchesSearch = title.includes(query) || content.includes(query);
+        const matchesCategory = !category || cat === category;
+
+        card.style.display = matchesSearch && matchesCategory ? 'block' : 'none';
+      });
+    }
+
+    searchInput.addEventListener('input', filterCards);
+    categoryFilter.addEventListener('change', filterCards);
+
+    document.querySelectorAll('.bookmark-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        btn.classList.toggle('active');
+        btn.textContent = btn.classList.contains('active') ? '📌' : '🔖';
+      });
+    });
+  </script>
 </body>
 </html>

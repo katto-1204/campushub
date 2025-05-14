@@ -218,9 +218,13 @@
         font-size: 0.9rem;
     }
 
+    .trending h3{
+         color:#ffffff;
+    }
+
     .trending-section {
         background: #590009;
-        color: white;
+        color: rgb(255, 255, 255);
     }
     
     .trending-item {
@@ -371,28 +375,448 @@
         background: rgba(89, 0, 9, 0.2);
     }
 
+    /* New Interactive Features */
+    .notification-bell {
+        position: relative;
+        margin-right: 15px;
+        cursor: pointer;
+    }
+
+    .notification-count {
+        position: absolute;
+        top: -5px;
+        right: -5px;
+        background: #590009;
+        color: white;
+        border-radius: 50%;
+        width: 18px;
+        height: 18px;
+        font-size: 0.7rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .notification-dropdown {
+        position: absolute;
+        top: 45px;
+        right: 10px;
+        width: 320px;
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        padding: 15px;
+        z-index: 1001;
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition: all 0.3s ease;
+    }
+
+    .notification-dropdown.active {
+        max-height: 400px;
+        opacity: 1;
+    }
+
+    .notification-item {
+        padding: 10px;
+        border-bottom: 1px solid #eee;
+    }
+
+    .notification-item:last-child {
+        border-bottom: none;
+    }
+
+    /* Collapsible sections */
+    .collapsible-header {
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .collapsible-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+    }
+
+    .collapsible-content.active {
+        max-height: 500px;
+    }
+
+    /* Search bar */
+    .search-container {
+        position: relative;
+        margin-bottom: 15px;
+    }
+
+    .search-bar {
+        width: 100%;
+        padding: 10px 15px;
+        padding-left: 40px;
+        border-radius: 25px;
+        border: 1px solid #590009;
+        font-size: 0.95rem;
+        outline: none;
+        transition: all 0.3s ease;
+    }
+
+    .search-bar:focus {
+        box-shadow: 0 0 0 2px rgba(89, 0, 9, 0.2);
+    }
+
+    .search-icon {
+        position: absolute;
+        left: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #590009;
+    }
+
+    /* Calendar styles */
+    .mini-calendar {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 5px;
+        margin-top: 10px;
+    }
+
+    .calendar-day {
+        aspect-ratio: 1/1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        font-size: 0.85rem;
+        cursor: pointer;
+        position: relative;
+    }
+
+    .calendar-day.has-event {
+        background: rgba(89, 0, 9, 0.1);
+        color: #590009;
+        font-weight: bold;
+    }
+
+    .calendar-day.today {
+        background: #590009;
+        color: white;
+    }
+
+    .calendar-day:hover {
+        background: rgba(89, 0, 9, 0.2);
+    }
+
+    .calendar-weekday {
+        text-align: center;
+        font-size: 0.75rem;
+        color: #777;
+        padding-bottom: 5px;
+    }
+
+    /* Interactive toggle switches */
+    .toggle-switch {
+        position: relative;
+        display: inline-block;
+        width: 46px;
+        height: 22px;
+    }
+
+    .toggle-switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+    .toggle-slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        transition: .4s;
+        border-radius: 22px;
+    }
+
+    .toggle-slider:before {
+        position: absolute;
+        content: "";
+        height: 18px;
+        width: 18px;
+        left: 2px;
+        bottom: 2px;
+        background-color: white;
+        transition: .4s;
+        border-radius: 50%;
+    }
+
+    input:checked + .toggle-slider {
+        background-color: #590009;
+    }
+
+    input:checked + .toggle-slider:before {
+        transform: translateX(24px);
+    }
+
+    .toggle-label {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .toggle-label span {
+        flex: 1;
+    }
+
+    /* Discussion section */
+    .discussion-container {
+        margin-top: 10px;
+    }
+
+    .comment {
+        background: rgba(240, 240, 240, 0.5);
+        border-radius: 10px;
+        padding: 12px;
+        margin-bottom: 10px;
+    }
+
+    .comment-header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 5px;
+    }
+
+    .comment-author {
+        font-weight: bold;
+        color: #590009;
+    }
+
+    .comment-time {
+        font-size: 0.85rem;
+        color: #777;
+    }
+
+    .comment-input {
+        display: flex;
+        margin-top: 15px;
+    }
+
+    .comment-input input {
+        flex: 1;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 20px;
+        margin-right: 10px;
+    }
+
+    .poll-option {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 10px;
+    }
+
+    .poll-bar {
+        flex: 1;
+        height: 10px;
+        background: #eee;
+        border-radius: 5px;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .poll-progress {
+        position: absolute;
+        height: 100%;
+        background: #590009;
+    }
+
+    .poll-count {
+        min-width: 40px;
+        text-align: right;
+        font-size: 0.85rem;
+    }
+
+    /* Weather Widget */
+    .weather-widget {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-top: 10px;
+    }
+
+    .weather-icon {
+        font-size: 2rem;
+    }
+
+    .weather-details {
+        flex: 1;
+    }
+
+    .weather-temp {
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+
+    /* Expanded dashboard header */
+    .dashboard-header {
+        grid-column: span 2;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 15px;
+    }
+
+    .welcome-text {
+        font-size: 1.25rem;
+        color: #590009;
+    }
+
+    .action-tabs {
+        display: flex;
+        gap: 10px;
+    }
+
+    .action-tab {
+        padding: 8px 16px;
+        border-radius: 20px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .action-tab.active {
+        background: #590009;
+        color: white;
+    }
+
+    /* Popup */
+    .popup-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 2000;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+    }
+
+    .popup-overlay.active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .popup-content {
+        background: white;
+        border-radius: 15px;
+        padding: 25px;
+        width: 90%;
+        max-width: 500px;
+        position: relative;
+        transform: translateY(20px);
+        transition: all 0.3s ease;
+    }
+
+    .popup-overlay.active .popup-content {
+        transform: translateY(0);
+    }
+
+    .popup-close {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: #590009;
+    }
+
+    /* Tooltip */
+    .tooltip {
+        position: relative;
+        display: inline-block;
+    }
+
+    .tooltip .tooltip-text {
+        visibility: hidden;
+        width: 120px;
+        background-color: #555;
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        padding: 5px;
+        position: absolute;
+        z-index: 1;
+        bottom: 125%;
+        left: 50%;
+        margin-left: -60px;
+        opacity: 0;
+        transition: opacity 0.3s;
+    }
+
+    .tooltip:hover .tooltip-text {
+        visibility: visible;
+        opacity: 1;
+    }
 </style>
 </head>
 <body>
     <nav class="main-nav">
-    <h1 class="logo" style="color: #590000;">
-        <a href="home.html" style="color: #590000; text-decoration: none;">
-            Campus Hub
-        </a>
-    </h1>
+        <h1 class="logo" style="color: #590000;">
+            <a href="home.html" style="color: #590000; text-decoration: none;">
+                Campus Hub
+            </a>
+        </h1>
         <div class="nav-links">
             <a href="home.html" class="active">Home</a>
             <a href="announcements.html">Announcements</a>
             <a href="events.html">Events</a>
             <a href="clubs.html">Clubs</a>
         </div>
-        <a href="profile.html" class="profile-icon">👤</a>
+        <div style="display: flex; align-items: center;">
+            <div class="notification-bell" onclick="toggleNotifications()">
+                🔔
+                <span class="notification-count">3</span>
+                <div class="notification-dropdown" id="notificationDropdown">
+                    <h4>Notifications</h4>
+                    <div class="notification-item">
+                        <strong>New Announcement</strong>
+                        <p>Summer Internship Fair registration is now open</p>
+                        <small>2 hours ago</small>
+                    </div>
+                    <div class="notification-item">
+                        <strong>Event Reminder</strong>
+                        <p>Mock Interviews start tomorrow at 10 AM</p>
+                        <small>5 hours ago</small>
+                    </div>
+                    <div class="notification-item">
+                        <strong>Course Update</strong>
+                        <p>CS401 class rescheduled to Room 302B</p>
+                        <small>Yesterday</small>
+                    </div>
+                </div>
+            </div>
+            <a href="profile.html" class="profile-icon">👤</a>
+        </div>
     </nav>
 
     <div class="dashboard-container">
         <!-- Left Sidebar -->
         <aside class="sidebar">
             <div class="sidebar-block">
+                <div class="search-container">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="search-bar" placeholder="Search announcements, events..." />
+                </div>
                 <h3>📌 My Subscriptions</h3>
                 <ul class="subscription-list">
                     <li class="subscription-item">📚 Computer Science Dept</li>
@@ -400,24 +824,53 @@
                     <li class="subscription-item">⚽ Sports Committee</li>
                     <li class="subscription-item">🎭 Cultural Club</li>
                 </ul>
-                <div class="add-subscription">
+                <div class="add-subscription" onclick="showPopup('subscriptionPopup')">
                     <span>+</span> Add Subscription
                 </div>
             </div>
 
             <div class="sidebar-block">
-                <h3>🔍 Filters</h3>
-                <div class="filter-group">
-                    <h4>Categories</h4>
-                    <label><input type="checkbox" checked> Events</label>
-                    <label><input type="checkbox" checked> Academic</label>
-                    <label><input type="checkbox" checked> Deadlines</label>
-                    <label><input type="checkbox"> Faculty</label>
-                </div>
-                <div class="filter-group">
-                    <h4>Sort By</h4>
-                    <label><input type="radio" name="sort" checked> Latest</label>
-                    <label><input type="radio" name="sort"> Oldest</label>
+                <h3 class="collapsible-header" onclick="toggleCollapsible('filtersContent')">
+                    🔍 Filters
+                    <span>▼</span>
+                </h3>
+                <div class="collapsible-content active" id="filtersContent">
+                    <div class="filter-group">
+                        <h4>Categories</h4>
+                        <label class="toggle-label">
+                            <span>Events</span>
+                            <label class="toggle-switch">
+                                <input type="checkbox" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </label>
+                        <label class="toggle-label">
+                            <span>Academic</span>
+                            <label class="toggle-switch">
+                                <input type="checkbox" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </label>
+                        <label class="toggle-label">
+                            <span>Deadlines</span>
+                            <label class="toggle-switch">
+                                <input type="checkbox" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </label>
+                        <label class="toggle-label">
+                            <span>Faculty</span>
+                            <label class="toggle-switch">
+                                <input type="checkbox">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </label>
+                    </div>
+                    <div class="filter-group">
+                        <h4>Sort By</h4>
+                        <label><input type="radio" name="sort" checked> Latest</label>
+                        <label><input type="radio" name="sort"> Oldest</label>
+                    </div>
                 </div>
             </div>
 
@@ -431,18 +884,78 @@
                     <span>🎓</span>
                     <p>Graduation Ceremony Schedule Released</p>
                 </div>
+                <div class="trending-item">
+                    <span>🏆</span>
+                    <p>Campus Teams Win Regional Hackathon</p>
+                </div>
+            </div>
+            
+            <!-- New Weather Block -->
+            <div class="sidebar-block">
+                <h3>☀️ Campus Weather</h3>
+                <div class="weather-widget">
+                    <div class="weather-icon">☀️</div>
+                    <div class="weather-details">
+                        <div class="weather-temp">75°F</div>
+                        <div class="weather-desc">Sunny</div>
+                    </div>
+                </div>
+                <div style="margin-top: 10px; font-size: 0.9rem;">
+                    <div>Humidity: 45%</div>
+                    <div>Wind: 8 mph</div>
+                </div>
             </div>
         </aside>
 
         <!-- Main Content -->
-        <main class="main-content">
-            <div class="content-block full-width">
-                <div class="month-selector">
-                    <select>
-                        <option>March 2025</option>
-                        <option>April 2025</option>
-                        <option>May 2025</option>
-                    </select>
+       <main class="main-content">
+    <div class="content-block full-width">
+        <div class="dashboard-header">
+            <div class="welcome-text">
+                <h2>Welcome back, User!</h2>
+                <p>Wednesday, May 14, 2025 | 3 new notifications</p>
+            </div>
+            <div class="action-tabs">
+                <div class="action-tab active">Dashboard</div>
+                <div class="action-tab">Calendar</div>
+                <div class="action-tab">Analytics</div>
+            </div>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div class="month-selector" style="min-width: 150px;">
+
+            </div>
+
+                    <div class="campus-status">
+                        <span class="tooltip">
+                            <span style="display: flex; align-items: center; color: #590009;">
+                                <span style="width: 10px; height: 10px; background: #25D366; border-radius: 50%; display: inline-block; margin-right: 5px;"></span>
+                                Campus Services: Online
+                            </span>
+                            <span class="tooltip-text">All campus networks and services are operational</span>
+                        </span>
+                    </div>
+                </div>
+                
+                <!-- Mini Calendar -->
+                <div style="margin-top: 15px;">
+                    <div class="mini-calendar">
+                        <div class="calendar-weekday">Sun</div>
+                        <div class="calendar-weekday">Mon</div>
+                        <div class="calendar-weekday">Tue</div>
+                        <div class="calendar-weekday">Wed</div>
+                        <div class="calendar-weekday">Thu</div>
+                        <div class="calendar-weekday">Fri</div>
+                        <div class="calendar-weekday">Sat</div>
+                        
+                        <div class="calendar-day">11</div>
+                        <div class="calendar-day">12</div>
+                        <div class="calendar-day">13</div>
+                        <div class="calendar-day today">14</div>
+                        <div class="calendar-day has-event">15</div>
+                        <div class="calendar-day has-event">16</div>
+                        <div class="calendar-day">17</div>
+                    </div>
                 </div>
             </div>
 
@@ -455,9 +968,39 @@
                 <p class="announcement-content">Leading tech companies including Google, Microsoft, and local startups will be participating. Prepare your resumes and portfolios. Mock interviews available on March 16.</p>
                 <p class="announcement-author">From: Career Development Center</p>
                 <div class="action-buttons">
-                    <button class="action-btn primary">Register Now</button>
+                    <button class="action-btn primary" onclick="showPopup('registerPopup')">Register Now</button>
                     <button class="action-btn secondary">More Info</button>
                     <span class="date-tag">Registration Deadline: March 20</span>
+                </div>
+                
+                <!-- Interactive Comments Section -->
+                <div style="margin-top: 15px;">
+                    <h4 onclick="toggleCollapsible('commentSection')" class="collapsible-header">
+                        💬 Comments (5)
+                        <span>▼</span>
+                    </h4>
+                    <div class="collapsible-content" id="commentSection">
+                        <div class="discussion-container">
+                            <div class="comment">
+                                <div class="comment-header">
+                                    <span class="comment-author">Prof. Johnson</span>
+                                    <span class="comment-time">1 hour ago</span>
+                                </div>
+                                <p>Portfolios are strongly recommended for design and CS students, but not mandatory for all majors.</p>
+                            </div>
+                            <div class="comment">
+                                <div class="comment-header">
+                                    <span class="comment-author">Alex T.</span>
+                                    <span class="comment-time">45 mins ago</span>
+                                </div>
+                                <p>Will there be any virtual participation options available?</p>
+                            </div>
+                            <div class="comment-input">
+                                <input type="text" placeholder="Add your comment..." />
+                                <button class="action-btn primary">Post</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -476,6 +1019,35 @@
                 <div class="action-buttons">
                     <button class="action-btn primary">RSVP</button>
                     <button class="action-btn secondary">Add to Calendar</button>
+                </div>
+                
+                <!-- Interactive Poll -->
+                <div style="margin-top: 15px;">
+                    <h4>📊 Quick Poll: Will you attend?</h4>
+                    <div class="poll-option">
+                        <span>Yes</span>
+                        <div class="poll-bar">
+                            <div class="poll-progress" style="width: 65%;"></div>
+                        </div>
+                        <span class="poll-count">65%</span>
+                    </div>
+                    <div class="poll-option">
+                        <span>No</span>
+                        <div class="poll-bar">
+                            <div class="poll-progress" style="width: 15%;"></div>
+                        </div>
+                        <span class="poll-count">15%</span>
+                    </div>
+                    <div class="poll-option">
+                        <span>Undecided</span>
+                        <div class="poll-bar">
+                            <div class="poll-progress" style="width: 20%;"></div>
+                        </div>
+                        <span class="poll-count">20%</span>
+                    </div>
+                    <div style="font-size: 0.85rem; color: #666; margin-top: 5px;">
+                        Total votes: 124 • Poll ends in 2 days
+                    </div>
                 </div>
             </div>
 
@@ -530,7 +1102,184 @@
                     <button class="action-btn secondary">View All Events</button>
                 </div>
             </div>
+            
+            <!-- New Bento Box: Campus Resources -->
+            <div class="content-block">
+                <h3>💡 Campus Resources</h3>
+                <div style="display: flex; flex-direction: column; gap: 12px;">
+                    <div class="resource-item" style="display: flex; align-items: center; gap: 10px;">
+                        <div style="width: 40px; height: 40px; background: rgba(89, 0, 9, 0.1); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #590009;">
+                            🏥
+                        </div>
+                        <div style="flex: 1;">
+                            <h4 style="margin: 0; color: #000;">Health Center</h4>
+                            <p style="margin: 0; font-size: 0.9rem; color: #555;">Open 8AM-6PM • Book appointment</p>
+                        </div>
+                        <button class="action-btn secondary" style="padding: 5px 10px;">Call</button>
+                    </div>
+                    
+                    <div class="resource-item" style="display: flex; align-items: center; gap: 10px;">
+                        <div style="width: 40px; height: 40px; background: rgba(89, 0, 9, 0.1); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #590009;">
+                            🚌
+                        </div>
+                        <div style="flex: 1;">
+                            <h4 style="margin: 0; color: #000;">Campus Shuttle</h4>
+                            <p style="margin: 0; font-size: 0.9rem; color: #555;">Next arrival: 10 minutes</p>
+                        </div>
+                        <button class="action-btn secondary" style="padding: 5px 10px;">Track</button>
+                    </div>
+                    
+                    <div class="resource-item" style="display: flex; align-items: center; gap: 10px;">
+                        <div style="width: 40px; height: 40px; background: rgba(89, 0, 9, 0.1); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #590009;">
+                            🍽️
+                        </div>
+                        <div style="flex: 1;">
+                            <h4 style="margin: 0; color: #000;">Dining Halls</h4>
+                            <p style="margin: 0; font-size: 0.9rem; color: #555;">View today's menu • Order ahead</p>
+                        </div>
+                        <button class="action-btn secondary" style="padding: 5px 10px;">Menu</button>
+                    </div>
+                </div>
+            </div>
         </main>
     </div>
+    
+    <!-- Popups -->
+    <div id="registerPopup" class="popup-overlay">
+        <div class="popup-content">
+            <button class="popup-close" onclick="hidePopup('registerPopup')">×</button>
+            <h2>Register for Internship Fair</h2>
+            <form>
+                <div style="margin-bottom: 15px;">
+                    <label style="display: block; margin-bottom: 5px;">Full Name</label>
+                    <input type="text" style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ddd;" />
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <label style="display: block; margin-bottom: 5px;">Student ID</label>
+                    <input type="text" style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ddd;" />
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <label style="display: block; margin-bottom: 5px;">Email</label>
+                    <input type="email" style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ddd;" />
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <label style="display: block; margin-bottom: 5px;">Major</label>
+                    <select style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ddd;">
+                        <option>Computer Science</option>
+                        <option>Business</option>
+                        <option>Engineering</option>
+                        <option>Arts</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <label>
+                        <input type="checkbox" />
+                        I agree to share my resume with participating companies
+                    </label>
+                </div>
+                <button class="action-btn primary" style="width: 100%;">Complete Registration</button>
+            </form>
+        </div>
+    </div>
+    
+    <div id="subscriptionPopup" class="popup-overlay">
+        <div class="popup-content">
+            <button class="popup-close" onclick="hidePopup('subscriptionPopup')">×</button>
+            <h2>Add New Subscription</h2>
+            <div class="search-container" style="margin-bottom: 20px;">
+                <span class="search-icon">🔍</span>
+                <input type="text" class="search-bar" placeholder="Search departments, clubs..." />
+            </div>
+            
+            <div style="max-height: 300px; overflow-y: auto;">
+                <div style="padding: 10px; border-bottom: 1px solid #eee; display: flex; align-items: center; justify-content: space-between;">
+                    <span>📊 Business School</span>
+                    <button class="action-btn secondary" style="padding: 5px 10px;">Subscribe</button>
+                </div>
+                <div style="padding: 10px; border-bottom: 1px solid #eee; display: flex; align-items: center; justify-content: space-between;">
+                    <span>🧪 Chemistry Department</span>
+                    <button class="action-btn secondary" style="padding: 5px 10px;">Subscribe</button>
+                </div>
+                <div style="padding: 10px; border-bottom: 1px solid #eee; display: flex; align-items: center; justify-content: space-between;">
+                    <span>🎭 Drama Society</span>
+                    <button class="action-btn secondary" style="padding: 5px 10px;">Subscribe</button>
+                </div>
+                <div style="padding: 10px; border-bottom: 1px solid #eee; display: flex; align-items: center; justify-content: space-between;">
+                    <span>🌍 International Students Association</span>
+                    <button class="action-btn secondary" style="padding: 5px 10px;">Subscribe</button>
+                </div>
+                <div style="padding: 10px; border-bottom: 1px solid #eee; display: flex; align-items: center; justify-content: space-between;">
+                    <span>📰 Campus News</span>
+                    <button class="action-btn secondary" style="padding: 5px 10px;">Subscribe</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Toggle notification dropdown
+        function toggleNotifications() {
+            const dropdown = document.getElementById('notificationDropdown');
+            dropdown.classList.toggle('active');
+        }
+        
+        // Toggle collapsible sections
+        function toggleCollapsible(id) {
+            const content = document.getElementById(id);
+            content.classList.toggle('active');
+            
+            // Update the arrow in the header
+            const header = content.previousElementSibling;
+            const arrow = header.querySelector('span');
+            if (content.classList.contains('active')) {
+                arrow.textContent = '▼';
+            } else {
+                arrow.textContent = '►';
+            }
+        }
+        
+        // Show popup
+        function showPopup(id) {
+            const popup = document.getElementById(id);
+            popup.classList.add('active');
+        }
+        
+        // Hide popup
+        function hidePopup(id) {
+            const popup = document.getElementById(id);
+            popup.classList.remove('active');
+        }
+        
+        // Change month in the selector
+        function changeMonth() {
+            const selector = document.getElementById('monthSelector');
+            // In a real application, this would reload the content for the selected month
+            alert('Changed to ' + selector.value);
+        }
+        
+        // Close notifications when clicking outside
+        document.addEventListener('click', function(event) {
+            const dropdown = document.getElementById('notificationDropdown');
+            const bell = document.querySelector('.notification-bell');
+            
+            if (!bell.contains(event.target) && dropdown.classList.contains('active')) {
+                dropdown.classList.remove('active');
+            }
+        });
+        
+        // Initialize any collapsible sections
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set the defaults for collapsible sections
+            const collapsibles = document.querySelectorAll('.collapsible-content');
+            collapsibles.forEach(function(collapsible) {
+                if (!collapsible.classList.contains('active')) {
+                    const header = collapsible.previousElementSibling;
+                    const arrow = header.querySelector('span');
+                    if (arrow) arrow.textContent = '►';
+                }
+            });
+        });
+    </script>
 </body>
 </html>

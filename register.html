@@ -228,5 +228,13 @@
             <a href="index.html" class="back-link">Back to Home</a>
         </div>
     </div>
+    <script>
+    document.querySelector('form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        // Here you would typically handle form validation and submission to a server
+        // For demonstration purposes, we'll just redirect to login
+        window.location.href = 'login.html';
+    });
+</script>
 </body>
 </html>

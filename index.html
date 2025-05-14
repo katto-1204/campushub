@@ -21,7 +21,7 @@
 
     .welcome-container {
       text-align: center;
-      z-index: 1;
+      z-index: 5;
       position: relative;
       padding: 40px;
       max-width: 600px;
@@ -29,14 +29,29 @@
       border: 1px solid rgba(89, 0, 9, 0.2);
       border-radius: 15px;
       backdrop-filter: blur(10px);
-      transform: translateY(20px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      transform: scale(0.8) translateY(50px);
       opacity: 0;
-      animation: slideUp 0.8s ease forwards;
+      animation: cardOpen 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
-    @keyframes slideUp {
-      to {
-        transform: translateY(0);
+    .welcome-container:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    @keyframes cardOpen {
+      0% {
+        transform: scale(0.8) translateY(50px) rotateX(10deg);
+        opacity: 0;
+      }
+      60% {
+        transform: scale(1.03) translateY(-10px) rotateX(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(1) translateY(0) rotateX(0deg);
         opacity: 1;
       }
     }
@@ -46,10 +61,27 @@
       font-size: 2.5rem;
       margin-bottom: 20px;
       transition: transform 0.3s ease;
+      position: relative;
+      display: inline-block;
     }
 
     h1:hover {
-      transform: scale(1.02);
+      transform: scale(1.05);
+    }
+
+    h1::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 0;
+      height: 3px;
+      background: #590009;
+      transition: width 0.4s ease;
+    }
+
+    h1:hover::after {
+      width: 100%;
     }
 
     p {
@@ -57,6 +89,31 @@
       margin-bottom: 30px;
       font-size: 1.1rem;
       line-height: 1.6;
+    }
+
+    .feature-icons {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 25px;
+    }
+
+    .feature-icon {
+      width: 60px;
+      height: 60px;
+      background: #590009;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.5rem;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .feature-icon:hover {
+      transform: rotate(15deg) scale(1.1);
+      background: #7a000d;
     }
 
     .get-started-btn {
@@ -69,12 +126,29 @@
       font-size: 1.1rem;
       transition: all 0.3s ease;
       margin-bottom: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .get-started-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: all 0.6s ease;
     }
 
     .get-started-btn:hover {
       background-color: #7a000d;
-      transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(89, 0, 9, 0.2);
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(89, 0, 9, 0.3);
+    }
+
+    .get-started-btn:hover::before {
+      left: 100%;
     }
 
     .login-link {
@@ -83,86 +157,351 @@
       text-decoration: none;
       font-size: 0.9rem;
       transition: all 0.3s ease;
+      margin-top: 10px;
     }
 
     .login-link:hover {
       color: #7a000d;
-      transform: translateY(-1px);
+      transform: translateY(-2px);
     }
 
-    .particles {
+    /* Advanced background effects */
+    .background {
       position: absolute;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
       top: 0;
       left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
       overflow: hidden;
     }
 
-    .particle {
+    .wave {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 200%;
+      height: 100%;
+      background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg"><path d="M321.39 56.44c58-10.79 114.16-30.13 172-41.86 82.39-16.72 168.19-17.73 250.45-.39C823.78 31 906.67 72 985.66 92.83c70.05 18.48 146.53 26.09 214.34 3V120H0V0h1000z" fill="%234a0007" /></svg>');
+      background-size: 100% 100%;
+      opacity: 0.6;
+      animation: wave 20s linear infinite;
+    }
+
+    .wave:nth-child(2) {
+      bottom: -10%;
+      animation: wave 15s linear infinite reverse;
+      opacity: 0.4;
+    }
+
+    @keyframes wave {
+      0% {
+        transform: translateX(0) translateZ(0);
+      }
+      50% {
+        transform: translateX(-25%) translateZ(0);
+      }
+      100% {
+        transform: translateX(-50%) translateZ(0);
+      }
+    }
+
+    .orbs-container {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      z-index: 2;
+      overflow: hidden;
+    }
+
+    .orb {
       position: absolute;
       border-radius: 50%;
-      background-color: rgba(255, 255, 255, 0.3);
+      filter: blur(10px);
+      opacity: 0.3;
       animation: float linear infinite;
-      pointer-events: none;
     }
 
     @keyframes float {
       0% {
-        transform: translateY(100vh) translateX(-50px);
+        transform: translateY(100vh) translateX(-50px) rotate(0deg);
+        opacity: 0;
+      }
+      20% {
+        opacity: 0.4;
+      }
+      80% {
+        opacity: 0.4;
+      }
+      100% {
+        transform: translateY(-100vh) translateX(50px) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    .glow {
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 70%);
+      filter: blur(5px);
+      animation: pulse 4s ease-in-out infinite alternate;
+      z-index: 2;
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+        opacity: 0.3;
+      }
+      100% {
+        transform: scale(1.5);
+        opacity: 0.1;
+      }
+    }
+
+    /* Interactive stars */
+    .stars-container {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      border-radius: 50%;
+      animation: twinkle linear infinite;
+    }
+
+    @keyframes twinkle {
+      0% {
         opacity: 0;
       }
       50% {
         opacity: 0.8;
       }
       100% {
-        transform: translateY(-100vh) translateX(50px);
         opacity: 0;
       }
+    }
+
+    /* Notification popup */
+    .notification {
+      position: absolute;
+      top: 20px;
+      right: -300px;
+      background: white;
+      color: #590009;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      max-width: 250px;
+      z-index: 10;
+      transition: right 0.5s ease;
+      animation: notifyIn 0.5s 5s forwards, notifyOut 0.5s 10s forwards;
+    }
+
+    @keyframes notifyIn {
+      to {
+        right: 20px;
+      }
+    }
+
+    @keyframes notifyOut {
+      to {
+        right: -300px;
+      }
+    }
+
+    /* Mouse trail effect */
+    .cursor-trail {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.5);
+      pointer-events: none;
+      z-index: 10000;
+      mix-blend-mode: screen;
+      transform: translate(-50%, -50%);
+      transition: width 0.2s, height 0.2s, opacity 0.2s;
     }
   </style>
 </head>
 <body>
-  <div class="particles" id="particles"></div>
+  <div class="background">
+    <div class="wave"></div>
+    <div class="wave"></div>
+  </div>
+
+  <div class="stars-container" id="stars"></div>
+  <div class="orbs-container" id="orbs"></div>
+  
+  <div class="glow" style="top: 30%; left: 20%;"></div>
+  <div class="glow" style="top: 60%; left: 70%;"></div>
 
   <div class="welcome-container">
     <h1>Campus Communication Hub</h1>
     <p>A unified platform for all your campus needs. Stay updated with announcements, events, and club activities.</p>
+    
+    <div class="feature-icons">
+      <div class="feature-icon" title="Campus Events">📅</div>
+      <div class="feature-icon" title="Announcements">📢</div>
+      <div class="feature-icon" title="Club Activities">👥</div>
+    </div>
+    
     <a href="register.html" class="get-started-btn">Get Started</a>
     <a href="login.html" class="login-link">Already have an account? Log in</a>
   </div>
 
+  <div class="notification">
+    New event: Campus Spring Festival registrations are now open!
+  </div>
+
   <script>
-    const particlesContainer = document.getElementById('particles');
-    const numberOfParticles = 50;
+    // Create stars background
+    const starsContainer = document.getElementById('stars');
+    const numberOfStars = 100;
 
-    function createParticle() {
-      const particle = document.createElement('div');
-      particle.classList.add('particle');
-
-      const size = Math.random() * 20 + 5;
+    for (let i = 0; i < numberOfStars; i++) {
+      const star = document.createElement('div');
+      star.classList.add('star');
+      
+      const size = Math.random() * 2 + 1;
       const posX = Math.random() * 100;
-      const delay = Math.random() * 15;
-      const duration = Math.random() * 20 + 10;
-
-      particle.style.width = `${size}px`;
-      particle.style.height = `${size}px`;
-      particle.style.left = `${posX}%`;
-      particle.style.animationDelay = `${delay}s`;
-      particle.style.animationDuration = `${duration}s`;
-
-      particlesContainer.appendChild(particle);
-
-      particle.addEventListener('animationend', () => {
-        particle.remove();
-        createParticle();
+      const posY = Math.random() * 100;
+      const duration = Math.random() * 3 + 2;
+      const delay = Math.random() * 5;
+      
+      star.style.width = `${size}px`;
+      star.style.height = `${size}px`;
+      star.style.left = `${posX}%`;
+      star.style.top = `${posY}%`;
+      star.style.animationDuration = `${duration}s`;
+      star.style.animationDelay = `${delay}s`;
+      
+      starsContainer.appendChild(star);
+    }
+    
+    // Create floating orbs
+    const orbsContainer = document.getElementById('orbs');
+    const numberOfOrbs = 20;
+    
+    function createOrb() {
+      const orb = document.createElement('div');
+      orb.classList.add('orb');
+      
+      const size = Math.random() * 100 + 50;
+      const posX = Math.random() * 100;
+      const duration = Math.random() * 20 + 15;
+      const hue = Math.floor(Math.random() * 30) + 350; // Red-ish hues
+      
+      orb.style.width = `${size}px`;
+      orb.style.height = `${size}px`;
+      orb.style.left = `${posX}%`;
+      orb.style.background = `hsla(${hue}, 80%, 50%, 0.2)`;
+      orb.style.animationDuration = `${duration}s`;
+      
+      orbsContainer.appendChild(orb);
+      
+      orb.addEventListener('animationend', () => {
+        orb.remove();
+        createOrb();
       });
     }
-
-    for (let i = 0; i < numberOfParticles; i++) {
-      createParticle();
+    
+    for (let i = 0; i < numberOfOrbs; i++) {
+      createOrb();
     }
+    
+    // Interactive feature icons
+    const featureIcons = document.querySelectorAll('.feature-icon');
+    
+    featureIcons.forEach(icon => {
+      icon.addEventListener('click', function() {
+        this.style.transform = 'scale(1.2) rotate(360deg)';
+        setTimeout(() => {
+          this.style.transform = '';
+        }, 1000);
+      });
+    });
+    
+    // Mouse trail effect
+    const numTrails = 10;
+    const trails = [];
+    
+    for (let i = 0; i < numTrails; i++) {
+      const trail = document.createElement('div');
+      trail.classList.add('cursor-trail');
+      trail.style.opacity = (1 - i / numTrails).toFixed(2);
+      document.body.appendChild(trail);
+      trails.push({
+        element: trail,
+        x: 0,
+        y: 0,
+        size: 15 - i * 1
+      });
+    }
+    
+    document.addEventListener('mousemove', (e) => {
+      trails[0].x = e.clientX;
+      trails[0].y = e.clientY;
+      
+      for (let i = 0; i < numTrails; i++) {
+        const trail = trails[i];
+        trail.element.style.width = `${trail.size}px`;
+        trail.element.style.height = `${trail.size}px`;
+        trail.element.style.left = `${trail.x}px`;
+        trail.element.style.top = `${trail.y}px`;
+      }
+    });
+    
+    function updateTrails() {
+      for (let i = trails.length - 1; i > 0; i--) {
+        trails[i].x = trails[i-1].x;
+        trails[i].y = trails[i-1].y;
+      }
+      requestAnimationFrame(updateTrails);
+    }
+    
+    updateTrails();
+    
+    // Interactive title animation
+    const title = document.querySelector('h1');
+    title.addEventListener('mouseover', () => {
+      title.style.textShadow = '0 0 10px rgba(89, 0, 9, 0.5)';
+    });
+    
+    title.addEventListener('mouseout', () => {
+      title.style.textShadow = 'none';
+    });
+    
+    // Button hover effects
+    const startBtn = document.querySelector('.get-started-btn');
+    startBtn.addEventListener('mouseenter', () => {
+      startBtn.style.letterSpacing = '1px';
+    });
+    
+    startBtn.addEventListener('mouseleave', () => {
+      startBtn.style.letterSpacing = 'normal';
+    });
+    
+    // Animated welcome container on scroll
+    window.addEventListener('scroll', () => {
+      const welcomeContainer = document.querySelector('.welcome-container');
+      let scrollPosition = window.scrollY;
+      
+      if (scrollPosition > 50) {
+        welcomeContainer.style.transform = 'translateY(-10px)';
+      } else {
+        welcomeContainer.style.transform = 'translateY(0)';
+      }
+    });
   </script>
 </body>
 </html>
